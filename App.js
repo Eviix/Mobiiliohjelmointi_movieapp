@@ -1,20 +1,104 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { Ionicons } from '@expo/vector-icons'; // Import the Ionicons component here
 
-export default function App() {
+import MovieScreen from './src/screens/Home';
+import SearchScreen from './src/screens/Search';
+import SuggestScreen from './src/screens/Suggest';
+import MovieDetail from "./src/components/MovieDetail";
+
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <Tab.Navigator>
+          <Tab.Screen
+            name="Movies"
+            component={HomeStack}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Ionicons
+                  name={focused ? "md-home" : "md-home-outline"}
+                  size={26}
+                  color={focused ? "#2f95dc" : "#ccc"}
+                />
+              )
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={SearchStack}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Ionicons
+                  name={focused ? "md-search" : "md-search-outline"}
+                  size={26}
+                  color={focused ? "#2f95dc" : "#ccc"}
+                />
+              )
+            }}
+          />
+          <Tab.Screen
+            name="Suggest"
+            component={SuggestScreen}
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Ionicons
+                  name={focused ? "md-bookmark" : "md-bookmark-outline"}
+                  size={26}
+                  color={focused ? "#2f95dc" : "#ccc"}
+                />
+              )
+            }}
+          />
+        </Tab.Navigator>
+      </View>
+    </NavigationContainer>
+  );
+}
+
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Popular & Upcoming Movies"
+        component={MovieScreen}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SearchStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Search movies"
+        component={SearchScreen}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+      />
+    </Stack.Navigator>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flex: 1
+  }
 });
+
+export default App;
