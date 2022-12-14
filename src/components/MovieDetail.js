@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 8,
   },
+  
   movieOverviewLabel: {
     fontWeight: 'bold',
     fontSize: 16,

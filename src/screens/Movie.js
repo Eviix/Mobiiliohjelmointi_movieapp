@@ -6,7 +6,7 @@ import { View, Text, StyleSheet, Image, ScrollView, Button } from "react-native"
 
 import config from '../config/config';
 
-function Home() {
+function Movie() {
     const navigation = useNavigation();
     const [popularMovies, setPopularMovies] = useState(null); 
     const [upcomingMovies, setUpcomingMovies] = useState(null); 
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
 
 });
 
-export default Home;
+export default Movie;
 
 
 

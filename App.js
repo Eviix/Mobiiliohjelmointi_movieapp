@@ -5,10 +5,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons'; // Import the Ionicons component here
 
-import MovieScreen from './src/screens/Home';
+import MovieScreen from './src/screens/Movie';
 import SearchScreen from './src/screens/Search';
 import SuggestScreen from './src/screens/Suggest';
 import MovieDetail from "./src/components/MovieDetail";
+
 
 
 const Stack = createStackNavigator();
@@ -26,7 +27,7 @@ function App() {
             options={{
               tabBarIcon: ({ focused }) => (
                 <Ionicons
-                  name={focused ? "md-home" : "md-home-outline"}
+                  name={focused ? "md-film" : "md-film-outline"}
                   size={26}
                   color={focused ? "#2f95dc" : "#ccc"}
                 />
@@ -48,7 +49,7 @@ function App() {
           />
           <Tab.Screen
             name="Suggest"
-            component={SuggestScreen}
+            component={SuggestStack}
             options={{
               tabBarIcon: ({ focused }) => (
                 <Ionicons
@@ -86,6 +87,21 @@ function SearchStack() {
       <Stack.Screen
         name="Search movies"
         component={SearchScreen}
+      />
+      <Stack.Screen
+        name="MovieDetail"
+        component={MovieDetail}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SuggestStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Suggest movies"
+        component={SuggestScreen}
       />
       <Stack.Screen
         name="MovieDetail"
