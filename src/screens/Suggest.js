@@ -12,9 +12,10 @@ function Suggest() {
   useEffect(() => {
     // Fetch a random popular movie 
     async function fetchData() {
+    
       // Use Axios to fetch a random popular movie
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&language=en-US&primary_release_date.gte=2010-01-01&primary_release_date.lte=2021-12-31`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&language=en-US&primary_release_date.gte=2020-01-01&primary_release_date.lte=2021-12-31&page=2`
       );
       const movies = response.data.results;
       const randomIndex = Math.floor(Math.random() * movies.length);
@@ -27,7 +28,7 @@ function Suggest() {
   const refresh = async () => {
     // Use Axios to fetch a random popular movie
     const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&language=en-US&&primary_release_date.gte=2010-01-01&primary_release_date.lte=2021-12-31`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${config.API_KEY}&language=en-US&&primary_release_date.gte=2020-01-01&primary_release_date.lte=2021-12-31&page=2`
     );
     const movies = response.data.results;
     const randomIndex = Math.floor(Math.random() * movies.length);
